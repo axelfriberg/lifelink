@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./life-counter.css";
 
 type LifeCounterProps = {
@@ -12,6 +12,26 @@ export function LifeCounter({
   playerName,
 }: LifeCounterProps) {
   const [life, setLife] = useState<number>(startingLifeTotal);
+  const [currentLifeChange, setCurrentLifeChange] = useState<number>(0);
+
+  useEffect(() => {
+    const resetTimeout = setTimeout(() => {
+      handleResetCurrentLifeChange();
+    }, 1000);
+
+    return () => clearTimeout(resetTimeout);
+  }, [currentLifeChange]);
+
+  const handleResetCurrentLifeChange = () => setCurrentLifeChange(0);
+  const handleLifeIncrease = () => {
+    setLife(life + 1);
+    setCurrentLifeChange(currentLifeChange + 1);
+  };
+
+  const handleLifeDecrease = () => {
+    setLife(life - 1);
+    setCurrentLifeChange(currentLifeChange - 1);
+  };
 
   return (
     <div className={`life-counter ${className}`}>
@@ -19,15 +39,16 @@ export function LifeCounter({
       <button
         className="increase-life-button"
         type="button"
-        onClick={() => setLife(life + 1)}
+        onClick={handleLifeIncrease}
       >
         +
       </button>
       <p className="life text">{life}</p>
+      {currentLifeChange !== 0 ? <p>{currentLifeChange}</p> : null}
       <button
         className="decrease-life-button"
         type="button"
-        onClick={() => setLife(life - 1)}
+        onClick={handleLifeDecrease}
       >
         -
       </button>
