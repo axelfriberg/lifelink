@@ -34,31 +34,38 @@ export function LifeCounter({
   };
 
   return (
-    <div className={`life-counter ${className}`}>
-      <p className="player-name text">{playerName}</p>
-      <button
-        className="increase-life-button"
-        type="button"
-        onClick={handleLifeIncrease}
-      >
-        +
-      </button>
-      <p className="life text">{life}</p>
-      {currentLifeChange !== 0 ? <p>{currentLifeChange}</p> : null}
-      <button
-        className="decrease-life-button"
-        type="button"
-        onClick={handleLifeDecrease}
-      >
-        -
-      </button>
-      <button
-        className="reset-life-button"
-        type="button"
-        onClick={() => setLife(startingLifeTotal)}
-      >
+    <div className={className}>
+      <button type="button" onClick={() => setLife(startingLifeTotal)}>
         Reset
       </button>
+      <div className="life-counter">
+        <p className="player-name text">{playerName}</p>
+        <button
+          className="life-button increase-life-button"
+          type="button"
+          onClick={handleLifeIncrease}
+        >
+          +
+        </button>
+        <p className="life text">{life}</p>
+        {currentLifeChange !== 0 ? (
+          <p
+            className={`text current-life-change ${
+              currentLifeChange > 0 ? "positive-life" : "negative-life"
+            }`}
+          >
+            {currentLifeChange > 0 && "+"}
+            {currentLifeChange}
+          </p>
+        ) : null}
+        <button
+          className="life-button decrease-life-button"
+          type="button"
+          onClick={handleLifeDecrease}
+        >
+          -
+        </button>
+      </div>
     </div>
   );
 }

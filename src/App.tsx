@@ -11,7 +11,7 @@ function App() {
         startingLifeTotal={STARTING_LIFE_TOTAL}
         playerName="Player 1"
       />
-      <hr />
+      <hr className="divider"/>
       <LifeCounter
         startingLifeTotal={STARTING_LIFE_TOTAL}
         playerName="Player 2"
