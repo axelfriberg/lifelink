@@ -5,3 +5,7 @@
 .flip {
   transform: rotate(180deg);
 }
+
+.round-timer {
+  text-align: center;
+}
