@@ -8,4 +8,10 @@
 
 .round-timer {
   text-align: center;
+  display: flex;
+  gap: 16px;
+}
+
+.clock {
+  min-width: 100px;
 }
