@@ -1,0 +1,16 @@
+{
+    "name": "Lifelink",
+    "short_name": "Lifelink",
+    "description": "A life counter for Magic: The Gathering",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#F8F6DB",
+    "theme_color": "#F8F6DB",
+    "icons": [
+        {
+            "src": "/icons/512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
