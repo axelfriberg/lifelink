@@ -15,9 +15,12 @@ export function LifeCounter({
 }: LifeCounterProps) {
   const [life, setLife] = useState<number>(startingLifeTotal);
   const [currentLifeChange, setCurrentLifeChange] = useState<number>(0);
+  const [lifeHistory, setLifeHistory] = useState<number[]>([]);
 
   useEffect(() => {
     const resetTimeout = setTimeout(() => {
+      if (currentLifeChange === 0) return;
+      setLifeHistory((lifeHistory) => [...lifeHistory, currentLifeChange]);
       handleResetCurrentLifeChange();
     }, 1000);
 
@@ -36,15 +39,21 @@ export function LifeCounter({
     setCurrentLifeChange(currentLifeChange - 1);
   };
 
+  const handleReset = () => {
+    setLife(startingLifeTotal);
+    setLifeHistory([]);
+  };
+
   return (
     <div className={className}>
       <div className="life-counter">
         <div className="action-row">
           <p className="player-name">{playerName}</p>
-          <button type="button" onClick={() => setLife(startingLifeTotal)}>
+          <button type="button" onClick={handleReset}>
             Reset
           </button>
         </div>
+        <div>{lifeHistory.join(", ")}</div>
         <button
           className="life-button"
           type="button"
