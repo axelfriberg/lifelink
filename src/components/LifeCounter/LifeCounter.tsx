@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./life-counter.css";
 import { CurrentLifeChange } from "../CurrentLifeChange/CurrentLifeChange";
+import LifeHistory from "./LifeHistory";
 
 type LifeCounterProps = {
   className?: string;
@@ -16,6 +17,7 @@ export function LifeCounter({
   const [life, setLife] = useState<number>(startingLifeTotal);
   const [currentLifeChange, setCurrentLifeChange] = useState<number>(0);
   const [lifeHistory, setLifeHistory] = useState<number[]>([]);
+  const [showLifeHistory, setShowLifeHistory] = useState<boolean>(false);
 
   useEffect(() => {
     const resetTimeout = setTimeout(() => {
@@ -52,8 +54,11 @@ export function LifeCounter({
           <button type="button" onClick={handleReset}>
             Reset
           </button>
+          <button type="button" onClick={() => setShowLifeHistory(l => !l)}>
+           {showLifeHistory ? "Hide history" : "Show history"}
+          </button>
         </div>
-        <div>{lifeHistory.join(", ")}</div>
+        {showLifeHistory && <LifeHistory lifeHistory={lifeHistory} />}
         <button
           className="life-button"
           type="button"
