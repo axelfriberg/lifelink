@@ -1,5 +1,5 @@
 import "./App.css";
-import { LifeCounter } from "./components/LifeCounter.tsx";
+import { LifeCounter } from "./components/LifeCounter/LifeCounter.tsx";
 
 const STARTING_LIFE_TOTAL = 20;
 

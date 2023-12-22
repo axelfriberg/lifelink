@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./life-counter.css";
+import { CurrentLifeChange } from "../CurrentLifeChange/CurrentLifeChange";
 
 type LifeCounterProps = {
   className?: string;
@@ -24,6 +25,7 @@ export function LifeCounter({
   }, [currentLifeChange]);
 
   const handleResetCurrentLifeChange = () => setCurrentLifeChange(0);
+
   const handleLifeIncrease = () => {
     setLife(life + 1);
     setCurrentLifeChange(currentLifeChange + 1);
@@ -52,16 +54,7 @@ export function LifeCounter({
         </button>
         <div className="action-row">
           <p className="life text">{life}</p>
-          {currentLifeChange !== 0 ? (
-            <p
-              className={`text ${
-                currentLifeChange > 0 ? "positive-life" : "negative-life"
-              }`}
-            >
-              {currentLifeChange > 0 && "+"}
-              {currentLifeChange}
-            </p>
-          ) : null}
+          <CurrentLifeChange currentLifeChange={currentLifeChange} />
         </div>
         <button
           className="life-button"
