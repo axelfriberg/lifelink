@@ -1,41 +1,20 @@
 .life-counter {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 80px);
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  row-gap: 16px;
+  gap: 16px;
   align-items: center;
 }
 
 .life-button {
   padding: 0;
-  font-size: 3rem;
-  height: 100%;
-}
-
-.increase-life-button {
-  grid-row: 2;
-  grid-column: 1 / 4;
-}
-
-.decrease-life-button {
-  grid-row: 4;
-  grid-column: 1 / 4;
+  font-size: 2rem;
+  max-width: 200px;
+  width: 100%;
 }
 
 .player-name {
-  grid-row: 1;
-  grid-column: 1 / 4;
-}
-
-.life {
-  grid-row: 3;
-  grid-column: 2 / 3;
-}
-
-.current-life-change {
-  grid-row: 3;
-  grid-column: 3;
+  font-size: 1rem;
 }
 
 .positive-life {
@@ -50,4 +29,11 @@
   font-size: 2rem;
   font-weight: 700;
   margin: 0;
+}
+
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 }

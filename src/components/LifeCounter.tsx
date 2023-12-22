@@ -6,6 +6,7 @@ type LifeCounterProps = {
   startingLifeTotal: number;
   playerName: string;
 };
+
 export function LifeCounter({
   className,
   startingLifeTotal,
@@ -35,31 +36,35 @@ export function LifeCounter({
 
   return (
     <div className={className}>
-      <button type="button" onClick={() => setLife(startingLifeTotal)}>
-        Reset
-      </button>
       <div className="life-counter">
-        <p className="player-name text">{playerName}</p>
+        <div className="action-row">
+          <p className="player-name">{playerName}</p>
+          <button type="button" onClick={() => setLife(startingLifeTotal)}>
+            Reset
+          </button>
+        </div>
         <button
-          className="life-button increase-life-button"
+          className="life-button"
           type="button"
           onClick={handleLifeIncrease}
         >
           +
         </button>
-        <p className="life text">{life}</p>
-        {currentLifeChange !== 0 ? (
-          <p
-            className={`text current-life-change ${
-              currentLifeChange > 0 ? "positive-life" : "negative-life"
-            }`}
-          >
-            {currentLifeChange > 0 && "+"}
-            {currentLifeChange}
-          </p>
-        ) : null}
+        <div className="action-row">
+          <p className="life text">{life}</p>
+          {currentLifeChange !== 0 ? (
+            <p
+              className={`text ${
+                currentLifeChange > 0 ? "positive-life" : "negative-life"
+              }`}
+            >
+              {currentLifeChange > 0 && "+"}
+              {currentLifeChange}
+            </p>
+          ) : null}
+        </div>
         <button
-          className="life-button decrease-life-button"
+          className="life-button"
           type="button"
           onClick={handleLifeDecrease}
         >
