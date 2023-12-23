@@ -1,4 +1,3 @@
-import "./App.css";
 import { Clock } from "./components/LifeCounter/Clock.tsx";
 import { LifeCounter } from "./components/LifeCounter/LifeCounter.tsx";
 import useRoundTimer from "./useRoundTimer.ts";
@@ -16,22 +15,26 @@ function App() {
   };
   return (
     <div>
-      <div className="flip">
-        <div className="round-timer">
-          <Clock minutes={minutes} seconds={seconds} />
-          <button type="button" onClick={toggleTimer}>
-            {isRunning ? "Stop timer" : "Start timer"}
-          </button>
+      <div className="rotate-180">
+        <div className="flex">
+          <div className="ml-auto">
+            <Clock minutes={minutes} seconds={seconds} />
+            <button type="button" onClick={toggleTimer}>
+              {isRunning ? "Stop timer" : "Start timer"}
+            </button>
+          </div>
         </div>
         <LifeCounter startingLifeTotal={STARTING_LIFE_TOTAL} />
       </div>
-      <hr className="divider" />
+      <hr className="my-4" />
       <div>
-        <div className="round-timer">
-          <Clock minutes={minutes} seconds={seconds} />
-          <button type="button" onClick={toggleTimer}>
-            {isRunning ? "Stop timer" : "Start timer"}
-          </button>
+        <div className="flex">
+          <div className="ml-auto">
+            <Clock minutes={minutes} seconds={seconds} />
+            <button type="button" onClick={toggleTimer}>
+              {isRunning ? "Stop timer" : "Start timer"}
+            </button>
+          </div>
         </div>
         <LifeCounter startingLifeTotal={STARTING_LIFE_TOTAL} />
       </div>
