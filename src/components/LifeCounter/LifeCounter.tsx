@@ -63,7 +63,7 @@ export function LifeCounter({
           +
         </button>
         <div className="flex content-between items-center gap-4">
-          <p className="life text">{life}</p>
+          <p className="text-xl font-bold">{life}</p>
           <CurrentLifeChange currentLifeChange={currentLifeChange} />
         </div>
         <button

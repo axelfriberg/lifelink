@@ -1,5 +1,3 @@
-import "./current-life-change.css"
-
 type CurrentLifeChangeProps = {
   currentLifeChange: number;
 };
@@ -13,8 +11,8 @@ export function CurrentLifeChange({
 
   return (
     <p
-      className={`text current-life-change ${
-        currentLifeChange > 0 ? "positive-life" : "negative-life"
+      className={`text-xl ${
+        currentLifeChange > 0 ? "text-green-600" : "text-red-600"
       }`}
     >
       {currentLifeChange > 0 && "+"}
