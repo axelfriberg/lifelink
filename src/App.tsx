@@ -1,11 +1,15 @@
 import { Clock } from "./components/Clock.tsx";
 import { LifeCounter } from "./components/LifeCounter.tsx";
 import useRoundTimer from "./useRoundTimer.ts";
+import { useLifeCounter } from "./useLifeCounter.ts";
 
 export const STARTING_LIFE_TOTAL = 20;
 
 function App() {
-  const { minutes, seconds, start, stop, isRunning } = useRoundTimer();
+  const player1 = useLifeCounter();
+  const player2 = useLifeCounter();
+  const { minutes, seconds, start, stop, isRunning, reset } = useRoundTimer();
+
   const toggleTimer = () => {
     if (isRunning) {
       stop();
@@ -13,6 +17,13 @@ function App() {
       start();
     }
   };
+
+  const handleReset = () => {
+    player1.handleReset();
+    player2.handleReset();
+    reset();
+  };
+
   return (
     <div className="bg-plains min-h-screen">
       <div className="rotate-180">
@@ -24,9 +35,17 @@ function App() {
             </button>
           </div>
         </div>
-        <LifeCounter startingLifeTotal={STARTING_LIFE_TOTAL} />
+        <LifeCounter
+          life={player1.life}
+          onLifeIncrease={player1.handleLifeIncrease}
+          onLifeDecrease={player1.handleLifeDecrease}
+          currentLifeChange={player1.currentLifeChange}
+        />
       </div>
       <hr className="my-4" />
+      <button type="button" onClick={handleReset}>
+        Reset game
+      </button>
       <div>
         <div className="flex">
           <div className="ml-auto">
@@ -36,7 +55,12 @@ function App() {
             </button>
           </div>
         </div>
-        <LifeCounter startingLifeTotal={STARTING_LIFE_TOTAL} />
+        <LifeCounter
+          life={player2.life}
+          onLifeIncrease={player2.handleLifeIncrease}
+          onLifeDecrease={player2.handleLifeDecrease}
+          currentLifeChange={player2.currentLifeChange}
+        />
       </div>
     </div>
   );

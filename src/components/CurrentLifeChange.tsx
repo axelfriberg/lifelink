@@ -1,11 +1,11 @@
 type CurrentLifeChangeProps = {
-  currentLifeChange: number;
+  currentLifeChange?: number;
 };
 
 export function CurrentLifeChange({
   currentLifeChange,
 }: CurrentLifeChangeProps) {
-  if (currentLifeChange === 0) {
+  if (currentLifeChange === 0 || !currentLifeChange) {
     return null;
   }
 

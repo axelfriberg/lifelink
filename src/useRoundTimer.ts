@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 
+const STARTING_TIME = 50 * 60 * 1000; // 50 minutes in ms
+
 const useRoundTimer = () => {
-  const [time, setTime] = useState(50 * 60 * 1000); // 50 minutes in ms
+  const [time, setTime] = useState(STARTING_TIME);
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
@@ -24,6 +26,10 @@ const useRoundTimer = () => {
   const seconds = date.getSeconds();
   const start = () => setIsRunning(true);
   const stop = () => setIsRunning(false);
+  const reset = () => {
+    setTime(STARTING_TIME);
+    setIsRunning(false);
+  };
 
   return {
     minutes,
@@ -31,6 +37,7 @@ const useRoundTimer = () => {
     start,
     stop,
     isRunning,
+    reset,
   };
 };
 
