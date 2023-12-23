@@ -6,13 +6,11 @@ import LifeHistory from "./LifeHistory";
 type LifeCounterProps = {
   className?: string;
   startingLifeTotal: number;
-  playerName: string;
 };
 
 export function LifeCounter({
   className,
   startingLifeTotal,
-  playerName,
 }: LifeCounterProps) {
   const [life, setLife] = useState<number>(startingLifeTotal);
   const [currentLifeChange, setCurrentLifeChange] = useState<number>(0);
@@ -50,12 +48,11 @@ export function LifeCounter({
     <div className={className}>
       <div className="life-counter">
         <div className="action-row">
-          <p className="player-name">{playerName}</p>
           <button type="button" onClick={handleReset}>
             Reset
           </button>
-          <button type="button" onClick={() => setShowLifeHistory(l => !l)}>
-           {showLifeHistory ? "Hide history" : "Show history"}
+          <button type="button" onClick={() => setShowLifeHistory((l) => !l)}>
+            {showLifeHistory ? "Hide history" : "Show history"}
           </button>
         </div>
         {showLifeHistory && <LifeHistory lifeHistory={lifeHistory} />}
