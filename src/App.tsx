@@ -43,7 +43,7 @@ function App() {
             currentLifeChange={player1.currentLifeChange}
           />
         </div>
-        <hr className="my-4" />
+        <hr className="my-4 -mx-4 h-[2px] bg-slate-600 border-none" />
         <button type="button" onClick={handleReset}>
           Reset game
         </button>
