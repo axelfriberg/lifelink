@@ -1,5 +1,3 @@
-import "./clock.css";
-
 export function Clock({
   minutes,
   seconds,
