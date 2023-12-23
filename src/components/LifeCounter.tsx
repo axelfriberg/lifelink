@@ -1,4 +1,6 @@
 import { CurrentLifeChange } from "./CurrentLifeChange";
+import { FaPlus } from "react-icons/fa6";
+import { FaMinus } from "react-icons/fa6";
 
 type LifeCounterProps = {
   className?: string;
@@ -19,22 +21,22 @@ export function LifeCounter({
     <div className={className}>
       <div className="flex flex-col w-full gap-4 items-center">
         <button
-          className="text-4xl max-w-52 w-full border-2"
+          className="text-4xl w-full max-w-xl flex justify-center px-16 py-4 bg-slate-600 text-white rounded-lg active:bg-slate-500"
           type="button"
           onClick={onLifeIncrease}
         >
-          +
+          <FaPlus />
         </button>
-        <div className="flex content-between items-center gap-4">
-          <p className="text-xl font-bold">{life}</p>
+        <div className="flex content-between items-center gap-4 text-5xl font-bold">
+          <p>{life}</p>
           <CurrentLifeChange currentLifeChange={currentLifeChange} />
         </div>
         <button
-          className="text-4xl max-w-52 w-full border-2"
+          className="text-4xl w-full max-w-xl flex justify-center px-16 py-4 bg-slate-600 text-white rounded-lg active:bg-slate-500"
           type="button"
           onClick={onLifeDecrease}
         >
-          -
+          <FaMinus />
         </button>
       </div>
     </div>
