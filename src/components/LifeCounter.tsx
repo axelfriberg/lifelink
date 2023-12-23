@@ -27,9 +27,11 @@ export function LifeCounter({
         >
           <FaPlus />
         </button>
-        <div className="flex content-between items-center gap-4 text-5xl font-bold">
-          <p>{life}</p>
-          <CurrentLifeChange currentLifeChange={currentLifeChange} />
+        <div className="grid grid-cols-3 text-5xl font-bold min-w-80 justify-items-center">
+          <div className="col-start-2">{life}</div>
+          <CurrentLifeChange
+            currentLifeChange={currentLifeChange}
+          />
         </div>
         <button
           className="text-4xl w-full max-w-xl flex justify-center px-16 py-4 bg-slate-600 text-white rounded-lg active:bg-slate-500"
