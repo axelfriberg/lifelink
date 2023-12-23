@@ -25,42 +25,44 @@ function App() {
   };
 
   return (
-    <div className="bg-plains min-h-screen">
-      <div className="rotate-180">
-        <div className="flex">
-          <div className="ml-auto">
-            <Clock minutes={minutes} seconds={seconds} />
-            <button type="button" onClick={toggleTimer}>
-              {isRunning ? "Stop timer" : "Start timer"}
-            </button>
+    <div className="bg-plains min-h-screen px-4 flex flex-col">
+      <div className="my-auto">
+        <div className="rotate-180">
+          <div className="flex">
+            <div className="ml-auto">
+              <Clock minutes={minutes} seconds={seconds} />
+              <button type="button" onClick={toggleTimer}>
+                {isRunning ? "Stop timer" : "Start timer"}
+              </button>
+            </div>
           </div>
+          <LifeCounter
+            life={player1.life}
+            onLifeIncrease={player1.handleLifeIncrease}
+            onLifeDecrease={player1.handleLifeDecrease}
+            currentLifeChange={player1.currentLifeChange}
+          />
         </div>
-        <LifeCounter
-          life={player1.life}
-          onLifeIncrease={player1.handleLifeIncrease}
-          onLifeDecrease={player1.handleLifeDecrease}
-          currentLifeChange={player1.currentLifeChange}
-        />
-      </div>
-      <hr className="my-4" />
-      <button type="button" onClick={handleReset}>
-        Reset game
-      </button>
-      <div>
-        <div className="flex">
-          <div className="ml-auto">
-            <Clock minutes={minutes} seconds={seconds} />
-            <button type="button" onClick={toggleTimer}>
-              {isRunning ? "Stop timer" : "Start timer"}
-            </button>
+        <hr className="my-4" />
+        <button type="button" onClick={handleReset}>
+          Reset game
+        </button>
+        <div>
+          <div className="flex">
+            <div className="ml-auto">
+              <Clock minutes={minutes} seconds={seconds} />
+              <button type="button" onClick={toggleTimer}>
+                {isRunning ? "Stop timer" : "Start timer"}
+              </button>
+            </div>
           </div>
+          <LifeCounter
+            life={player2.life}
+            onLifeIncrease={player2.handleLifeIncrease}
+            onLifeDecrease={player2.handleLifeDecrease}
+            currentLifeChange={player2.currentLifeChange}
+          />
         </div>
-        <LifeCounter
-          life={player2.life}
-          onLifeIncrease={player2.handleLifeIncrease}
-          onLifeDecrease={player2.handleLifeDecrease}
-          currentLifeChange={player2.currentLifeChange}
-        />
       </div>
     </div>
   );

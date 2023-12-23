@@ -10,11 +10,7 @@ export function CurrentLifeChange({
   }
 
   return (
-    <p
-      className={`text-xl ${
-        currentLifeChange > 0 ? "text-green-600" : "text-red-600"
-      }`}
-    >
+    <p className={currentLifeChange > 0 ? "text-green-600" : "text-red-600"}>
       {currentLifeChange > 0 && "+"}
       {currentLifeChange}
     </p>
