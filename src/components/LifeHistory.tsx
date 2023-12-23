@@ -1,4 +1,4 @@
-import { STARTING_LIFE_TOTAL } from "../../App";
+import { STARTING_LIFE_TOTAL } from "../App";
 
 type LifeHistoryProps = {
   lifeHistory: number[];
@@ -16,7 +16,7 @@ function LifeHistory({ lifeHistory }: LifeHistoryProps) {
 
     return result;
   }
-  
+
   return (
     <ul>
       {calculateChanges().map((value, index, array) => (

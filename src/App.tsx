@@ -1,5 +1,5 @@
-import { Clock } from "./components/LifeCounter/Clock.tsx";
-import { LifeCounter } from "./components/LifeCounter/LifeCounter.tsx";
+import { Clock } from "./components/Clock.tsx";
+import { LifeCounter } from "./components/LifeCounter.tsx";
 import useRoundTimer from "./useRoundTimer.ts";
 
 export const STARTING_LIFE_TOTAL = 20;

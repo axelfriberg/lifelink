@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CurrentLifeChange } from "../CurrentLifeChange/CurrentLifeChange";
+import { CurrentLifeChange } from "./CurrentLifeChange";
 import LifeHistory from "./LifeHistory";
 
 type LifeCounterProps = {
