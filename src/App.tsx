@@ -14,7 +14,7 @@ function App() {
     }
   };
   return (
-    <div>
+    <div className="bg-plains min-h-screen">
       <div className="rotate-180">
         <div className="flex">
           <div className="ml-auto">
