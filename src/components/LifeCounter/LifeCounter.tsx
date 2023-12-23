@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./life-counter.css";
 import { CurrentLifeChange } from "../CurrentLifeChange/CurrentLifeChange";
 import LifeHistory from "./LifeHistory";
 
@@ -46,8 +45,8 @@ export function LifeCounter({
 
   return (
     <div className={className}>
-      <div className="life-counter">
-        <div className="action-row">
+      <div className="flex flex-col w-full gap-4 items-center">
+        <div className="flex content-between items-center gap-4">
           <button type="button" onClick={handleReset}>
             Reset
           </button>
@@ -57,18 +56,18 @@ export function LifeCounter({
         </div>
         {showLifeHistory && <LifeHistory lifeHistory={lifeHistory} />}
         <button
-          className="life-button"
+          className="text-4xl max-w-52 w-full border-2"
           type="button"
           onClick={handleLifeIncrease}
         >
           +
         </button>
-        <div className="action-row">
+        <div className="flex content-between items-center gap-4">
           <p className="life text">{life}</p>
           <CurrentLifeChange currentLifeChange={currentLifeChange} />
         </div>
         <button
-          className="life-button"
+          className="text-4xl max-w-52 w-full border-2"
           type="button"
           onClick={handleLifeDecrease}
         >
