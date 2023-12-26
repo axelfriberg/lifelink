@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { useLocalStorage } from "./useLocalStorage";
 
 const STARTING_TIME = 50 * 60 * 1000; // 50 minutes in ms
 
 const useRoundTimer = () => {
-  const [time, setTime] = useState(STARTING_TIME);
+  const [time, setTime] = useLocalStorage<number>("time", STARTING_TIME);
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const useRoundTimer = () => {
     return () => {
       clearInterval(timer);
     };
-  }, [isRunning]);
+  }, [isRunning, setTime]);
 
   const date = new Date(time);
 

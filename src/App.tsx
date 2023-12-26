@@ -19,8 +19,8 @@ const ICON_SIZE = 36;
 const iconButton = "border-2 border-sky-800 p-2 rounded-md";
 
 function App() {
-  const player1 = useLifeCounter();
-  const player2 = useLifeCounter();
+  const player1 = useLifeCounter("player1");
+  const player2 = useLifeCounter("player2");
   const timer = useRoundTimer();
   const [showHistory, setShowHistory] = useState<boolean>(false);
   const [showResetConfirmation, setShowResetConfirmation] =
