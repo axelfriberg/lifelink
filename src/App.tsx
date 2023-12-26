@@ -27,22 +27,13 @@ function App() {
   return (
     <div className="bg-plains min-h-screen px-4 flex flex-col">
       <div className="my-auto">
-        <div className="rotate-180">
-          <div className="flex">
-            <div className="ml-auto">
-              <Clock minutes={minutes} seconds={seconds} />
-              <button type="button" onClick={toggleTimer}>
-                {isRunning ? "Stop timer" : "Start timer"}
-              </button>
-            </div>
-          </div>
-          <LifeCounter
-            life={player1.life}
-            onLifeIncrease={player1.handleLifeIncrease}
-            onLifeDecrease={player1.handleLifeDecrease}
-            currentLifeChange={player1.currentLifeChange}
-          />
-        </div>
+        <LifeCounter
+          className="rotate-180"
+          life={player1.life}
+          onLifeIncrease={player1.handleLifeIncrease}
+          onLifeDecrease={player1.handleLifeDecrease}
+          currentLifeChange={player1.currentLifeChange}
+        />
         <hr className="my-4 -mx-4 h-[2px] bg-slate-600 border-none" />
         <button type="button" onClick={handleReset}>
           Reset game
