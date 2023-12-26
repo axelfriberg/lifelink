@@ -43,15 +43,15 @@ function App() {
 
   return (
     <div className="bg-plains h-dvh px-4 flex flex-col">
-      <div className="m-auto w-full max-w-xl">
+      <div className="flex flex-col w-full max-w-xl h-full">
         <LifeCounter
-          className="rotate-180"
+          className="rotate-180 my-auto"
           life={player1.life}
           onLifeIncrease={player1.handleLifeIncrease}
           onLifeDecrease={player1.handleLifeDecrease}
           currentLifeChange={player1.currentLifeChange}
         />
-        <div className="flex my-6">
+        <div className="flex">
           <div className="flex gap-2 items-center">
             <button
               type="button"
@@ -98,14 +98,13 @@ function App() {
             </button>
           </div>
         </div>
-        <div>
-          <LifeCounter
-            life={player2.life}
-            onLifeIncrease={player2.handleLifeIncrease}
-            onLifeDecrease={player2.handleLifeDecrease}
-            currentLifeChange={player2.currentLifeChange}
-          />
-        </div>
+        <LifeCounter
+          life={player2.life}
+          onLifeIncrease={player2.handleLifeIncrease}
+          onLifeDecrease={player2.handleLifeDecrease}
+          currentLifeChange={player2.currentLifeChange}
+          className="my-auto"
+        />
       </div>
       <Dialog
         isOpen={showHistory}
