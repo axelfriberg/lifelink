@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="bg-plains min-h-screen px-4 flex flex-col">
-      <div className="my-auto">
+      <div className="m-auto w-full max-w-xl">
         <LifeCounter
           className="rotate-180"
           life={player1.life}
