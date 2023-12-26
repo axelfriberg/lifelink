@@ -56,18 +56,16 @@ function App() {
             <button
               type="button"
               onClick={() => setShowResetConfirmation(true)}
-              aria-label="Reset game"
               className={iconButton}
             >
-              <FaArrowRotateRight size={ICON_SIZE} />
+              <FaArrowRotateRight size={ICON_SIZE} title="Reset game" />
             </button>
             <button
               type="button"
               className={iconButton}
-              aria-label="View history"
               onClick={() => setShowHistory(true)}
             >
-              <FaTimeline size={ICON_SIZE} />
+              <FaTimeline size={ICON_SIZE} title="View history" />
             </button>
           </div>
           <Clock
@@ -76,25 +74,15 @@ function App() {
             className="m-auto items-center justify-center text-center"
           />
           <div className="flex gap-2 items-center">
-            <button
-              type="button"
-              onClick={toggleTimer}
-              className={iconButton}
-              aria-label={timer.isRunning ? "Pause timer" : "Start timer"}
-            >
+            <button type="button" onClick={toggleTimer} className={iconButton}>
               {timer.isRunning ? (
-                <FaPause size={ICON_SIZE} />
+                <FaPause size={ICON_SIZE} title="Pause timer" />
               ) : (
-                <FaPlay size={ICON_SIZE} />
+                <FaPlay size={ICON_SIZE} title="Start timer" />
               )}
             </button>
-            <button
-              type="button"
-              onClick={timer.stop}
-              className={iconButton}
-              aria-label="Stop timer"
-            >
-              <FaStop size={ICON_SIZE} />
+            <button type="button" onClick={timer.stop} className={iconButton}>
+              <FaStop size={ICON_SIZE} title="Stop timer" />
             </button>
           </div>
         </div>

@@ -25,7 +25,7 @@ export function LifeCounter({
           type="button"
           onClick={onLifeIncrease}
         >
-          <FaPlus />
+          <FaPlus title="Increase life"/>
         </button>
         <div className="grid grid-cols-3 text-5xl font-bold min-w-80 justify-items-center">
           <div className="col-start-2">{life}</div>
@@ -36,7 +36,7 @@ export function LifeCounter({
           type="button"
           onClick={onLifeDecrease}
         >
-          <FaMinus />
+          <FaMinus title="Decrease life"/>
         </button>
       </div>
     </div>
