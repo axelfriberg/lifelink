@@ -6,7 +6,7 @@ import { FaArrowRotateRight, FaPlay, FaPause } from "react-icons/fa6";
 
 export const STARTING_LIFE_TOTAL = 20;
 
-const iconButton = "border-2 border-sky-800 p-2 rounded-md";
+const iconButton = "border-2 border-sky-800 p-4 rounded-md";
 
 function App() {
   const player1 = useLifeCounter();
