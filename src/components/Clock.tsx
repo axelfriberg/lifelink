@@ -6,7 +6,7 @@ export function Clock({
   seconds: number;
 }) {
   return (
-    <div className="min-w-28 text-lg font-bold">
+    <div className="text-lg font-bold">
       {`${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
         2,
         "0",

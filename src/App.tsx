@@ -2,8 +2,11 @@ import { Clock } from "./components/Clock.tsx";
 import { LifeCounter } from "./components/LifeCounter.tsx";
 import useRoundTimer from "./useRoundTimer.ts";
 import { useLifeCounter } from "./useLifeCounter.ts";
+import { FaArrowRotateRight, FaPlay, FaPause } from "react-icons/fa6";
 
 export const STARTING_LIFE_TOTAL = 20;
+
+const iconButton = "border-2 border-sky-800 p-2 rounded-md";
 
 function App() {
   const player1 = useLifeCounter();
@@ -34,19 +37,28 @@ function App() {
           onLifeDecrease={player1.handleLifeDecrease}
           currentLifeChange={player1.currentLifeChange}
         />
-        <hr className="my-4 -mx-4 h-[2px] bg-slate-600 border-none" />
-        <button type="button" onClick={handleReset}>
-          Reset game
-        </button>
-        <div>
-          <div className="flex">
-            <div className="ml-auto">
-              <Clock minutes={minutes} seconds={seconds} />
-              <button type="button" onClick={toggleTimer}>
-                {isRunning ? "Stop timer" : "Start timer"}
-              </button>
-            </div>
+        <div className="flex my-6">
+          <button
+            type="button"
+            onClick={handleReset}
+            aria-label="Reset game"
+            className={iconButton}
+          >
+            <FaArrowRotateRight />
+          </button>
+          <div className="ml-auto flex gap-2 items-center">
+            <Clock minutes={minutes} seconds={seconds} />
+            <button
+              type="button"
+              onClick={toggleTimer}
+              className={iconButton}
+              aria-label={isRunning ? "Pause timer" : "Start timer"}
+            >
+              {isRunning ? <FaPause /> : <FaPlay />}
+            </button>
           </div>
+        </div>
+        <div>
           <LifeCounter
             life={player2.life}
             onLifeIncrease={player2.handleLifeIncrease}
