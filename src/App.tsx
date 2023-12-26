@@ -21,6 +21,8 @@ function App() {
   const player2 = useLifeCounter();
   const { minutes, seconds, start, stop, isRunning, reset } = useRoundTimer();
   const [showHistory, setShowHistory] = useState<boolean>(false);
+  const [showResetConfirmation, setShowResetConfirmation] =
+    useState<boolean>(false);
 
   const toggleTimer = () => {
     if (isRunning) {
@@ -34,6 +36,7 @@ function App() {
     player1.handleReset();
     player2.handleReset();
     reset();
+    setShowResetConfirmation(false);
   };
 
   return (
@@ -49,7 +52,7 @@ function App() {
         <div className="flex my-6">
           <button
             type="button"
-            onClick={handleReset}
+            onClick={() => setShowResetConfirmation(true)}
             aria-label="Reset game"
             className={iconButton}
           >
@@ -100,6 +103,31 @@ function App() {
           </div>
         </div>
       </Dialog>
+      <Dialog
+        isOpen={showResetConfirmation}
+        title="Reset game"
+        onClose={() => setShowResetConfirmation(false)}
+        description="Are you sure you want reset the game? All life history will be reset
+        and the timer will be stopped."
+        actionButtons={
+          <>
+            <button
+              type="button"
+              className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+              onClick={handleReset}
+            >
+              Reset game
+            </button>
+            <button
+              type="button"
+              className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+              onClick={() => setShowResetConfirmation(false)}
+            >
+              Cancel
+            </button>
+          </>
+        }
+      />
     </div>
   );
 }
