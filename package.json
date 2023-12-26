@@ -11,6 +11,7 @@
     "prettier": "prettier . --write"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.1.1",
     "clsx": "^2.0.0",
     "prettier": "^3.1.0",
     "react": "^18.2.0",
