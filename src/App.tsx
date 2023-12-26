@@ -42,7 +42,7 @@ function App() {
   };
 
   return (
-    <div className="bg-plains min-h-screen px-4 flex flex-col">
+    <div className="bg-plains h-dvh px-4 flex flex-col">
       <div className="m-auto w-full max-w-xl">
         <LifeCounter
           className="rotate-180"
