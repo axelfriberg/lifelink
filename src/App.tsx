@@ -8,8 +8,9 @@ import {
   FaPause,
   FaTimeline,
 } from "react-icons/fa6";
-import LifeHistory from "./components/LifeHistory.tsx";
-import LifeHistoryDialog from "./components/LifeHistoryDialog.tsx";
+import { LifeHistory } from "./components/LifeHistory.tsx";
+import { Dialog } from "./components/Dialog.tsx";
+import { useState } from "react";
 
 export const STARTING_LIFE_TOTAL = 20;
 
@@ -19,6 +20,7 @@ function App() {
   const player1 = useLifeCounter();
   const player2 = useLifeCounter();
   const { minutes, seconds, start, stop, isRunning, reset } = useRoundTimer();
+  const [showHistory, setShowHistory] = useState<boolean>(false);
 
   const toggleTimer = () => {
     if (isRunning) {
@@ -63,28 +65,14 @@ function App() {
             >
               {isRunning ? <FaPause /> : <FaPlay />}
             </button>
-            <LifeHistoryDialog
-              trigger={
-                <button
-                  type="button"
-                  className={iconButton}
-                  aria-label="View history"
-                >
-                  <FaTimeline />
-                </button>
-              }
+            <button
+              type="button"
+              className={iconButton}
+              aria-label="View history"
+              onClick={() => setShowHistory(true)}
             >
-              <div className="flex justify-between">
-                <div>
-                  <p>Player 1</p>
-                  <LifeHistory lifeHistory={player1.lifeHistory} />
-                </div>
-                <div>
-                  <p>Player 2</p>
-                  <LifeHistory lifeHistory={player2.lifeHistory} />
-                </div>
-              </div>
-            </LifeHistoryDialog>
+              <FaTimeline />
+            </button>
           </div>
         </div>
         <div>
@@ -96,6 +84,22 @@ function App() {
           />
         </div>
       </div>
+      <Dialog
+        isOpen={showHistory}
+        title="History"
+        onClose={() => setShowHistory(false)}
+      >
+        <div className="flex justify-between">
+          <div>
+            <p className="font-semibold">Player 1</p>
+            <LifeHistory lifeHistory={player1.lifeHistory} />
+          </div>
+          <div>
+            <p className="font-semibold">Player 2</p>
+            <LifeHistory lifeHistory={player2.lifeHistory} />
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 }

@@ -4,7 +4,7 @@ type LifeHistoryProps = {
   lifeHistory: number[];
 };
 
-function LifeHistory({ lifeHistory }: LifeHistoryProps) {
+export function LifeHistory({ lifeHistory }: LifeHistoryProps) {
   function calculateChanges() {
     const result = [STARTING_LIFE_TOTAL];
     let currentNumber = STARTING_LIFE_TOTAL;
@@ -19,15 +19,19 @@ function LifeHistory({ lifeHistory }: LifeHistoryProps) {
 
   return (
     <ul>
-      {calculateChanges().map((value, index, array) => (
-        <li key={index}>
-          {index === 0
-            ? STARTING_LIFE_TOTAL
-            : `${array[index - 1]} + ${lifeHistory[index - 1]} =  ${value}`}
-        </li>
-      ))}
+      {calculateChanges().map((value, index, array) => {
+        const lifeChange = lifeHistory[index - 1];
+        const isPositive = lifeChange > 0;
+        return (
+          <li key={index}>
+            {index === 0
+              ? STARTING_LIFE_TOTAL
+              : `${array[index - 1]}${isPositive ? "+" : ""}${
+                  lifeHistory[index - 1]
+                } = ${value}`}
+          </li>
+        );
+      })}
     </ul>
   );
 }
-
-export default LifeHistory;
