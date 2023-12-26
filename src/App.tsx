@@ -2,15 +2,14 @@ import { Clock } from "./components/Clock.tsx";
 import { LifeCounter } from "./components/LifeCounter.tsx";
 import useRoundTimer from "./useRoundTimer.ts";
 import { useLifeCounter } from "./useLifeCounter.ts";
-import Modal from "react-modal";
 import {
   FaArrowRotateRight,
   FaPlay,
   FaPause,
   FaTimeline,
 } from "react-icons/fa6";
-import { useState } from "react";
 import LifeHistory from "./components/LifeHistory.tsx";
+import LifeHistoryDialog from "./components/LifeHistoryDialog.tsx";
 
 export const STARTING_LIFE_TOTAL = 20;
 
@@ -20,7 +19,6 @@ function App() {
   const player1 = useLifeCounter();
   const player2 = useLifeCounter();
   const { minutes, seconds, start, stop, isRunning, reset } = useRoundTimer();
-  const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(false);
 
   const toggleTimer = () => {
     if (isRunning) {
@@ -65,14 +63,28 @@ function App() {
             >
               {isRunning ? <FaPause /> : <FaPlay />}
             </button>
-            <button
-              type="button"
-              onClick={() => setIsHistoryOpen(true)}
-              className={iconButton}
-              aria-label="View history"
+            <LifeHistoryDialog
+              trigger={
+                <button
+                  type="button"
+                  className={iconButton}
+                  aria-label="View history"
+                >
+                  <FaTimeline />
+                </button>
+              }
             >
-              <FaTimeline />
-            </button>
+              <div className="flex justify-between">
+                <div>
+                  <p>Player 1</p>
+                  <LifeHistory lifeHistory={player1.lifeHistory} />
+                </div>
+                <div>
+                  <p>Player 2</p>
+                  <LifeHistory lifeHistory={player2.lifeHistory} />
+                </div>
+              </div>
+            </LifeHistoryDialog>
           </div>
         </div>
         <div>
@@ -84,31 +96,6 @@ function App() {
           />
         </div>
       </div>
-      <Modal
-        isOpen={isHistoryOpen}
-        onRequestClose={() => setIsHistoryOpen(false)}
-        contentLabel="Example Modal"
-      >
-        <div className="flex">
-          <button
-            onClick={() => setIsHistoryOpen(false)}
-            type="button"
-            className="ml-auto mb-4"
-          >
-            Close
-          </button>
-        </div>
-        <div className="flex justify-between">
-          <div>
-            <p>Player 1</p>
-            <LifeHistory lifeHistory={player1.lifeHistory} />
-          </div>
-          <div>
-            <p>Player 2</p>
-            <LifeHistory lifeHistory={player2.lifeHistory} />
-          </div>
-        </div>
-      </Modal>
     </div>
   );
 }
