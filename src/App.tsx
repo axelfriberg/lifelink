@@ -15,7 +15,8 @@ import { useState } from "react";
 
 export const STARTING_LIFE_TOTAL = 20;
 
-const iconButton = "border-2 border-sky-800 p-4 rounded-md";
+const ICON_SIZE = 36;
+const iconButton = "border-2 border-sky-800 p-2 rounded-md";
 
 function App() {
   const player1 = useLifeCounter();
@@ -58,7 +59,7 @@ function App() {
               aria-label="Reset game"
               className={iconButton}
             >
-              <FaArrowRotateRight />
+              <FaArrowRotateRight size={ICON_SIZE} />
             </button>
             <button
               type="button"
@@ -66,18 +67,26 @@ function App() {
               aria-label="View history"
               onClick={() => setShowHistory(true)}
             >
-              <FaTimeline />
+              <FaTimeline size={ICON_SIZE} />
             </button>
           </div>
-          <div className="ml-auto flex gap-2 items-center">
-            <Clock minutes={timer.minutes} seconds={timer.seconds} />
+          <Clock
+            minutes={timer.minutes}
+            seconds={timer.seconds}
+            className="m-auto items-center justify-center text-center"
+          />
+          <div className="flex gap-2 items-center">
             <button
               type="button"
               onClick={toggleTimer}
               className={iconButton}
               aria-label={timer.isRunning ? "Pause timer" : "Start timer"}
             >
-              {timer.isRunning ? <FaPause /> : <FaPlay />}
+              {timer.isRunning ? (
+                <FaPause size={ICON_SIZE} />
+              ) : (
+                <FaPlay size={ICON_SIZE} />
+              )}
             </button>
             <button
               type="button"
@@ -85,7 +94,7 @@ function App() {
               className={iconButton}
               aria-label="Stop timer"
             >
-              <FaStop />
+              <FaStop size={ICON_SIZE} />
             </button>
           </div>
         </div>
