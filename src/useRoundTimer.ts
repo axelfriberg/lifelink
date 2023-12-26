@@ -25,8 +25,8 @@ const useRoundTimer = () => {
   const minutes = date.getUTCMinutes();
   const seconds = date.getSeconds();
   const start = () => setIsRunning(true);
-  const stop = () => setIsRunning(false);
-  const reset = () => {
+  const pause = () => setIsRunning(false);
+  const stop = () => {
     setTime(STARTING_TIME);
     setIsRunning(false);
   };
@@ -37,7 +37,7 @@ const useRoundTimer = () => {
     start,
     stop,
     isRunning,
-    reset,
+    pause,
   };
 };
 

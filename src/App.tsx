@@ -7,6 +7,7 @@ import {
   FaPlay,
   FaPause,
   FaTimeline,
+  FaStop,
 } from "react-icons/fa6";
 import { LifeHistory } from "./components/LifeHistory.tsx";
 import { Dialog } from "./components/Dialog.tsx";
@@ -19,23 +20,23 @@ const iconButton = "border-2 border-sky-800 p-4 rounded-md";
 function App() {
   const player1 = useLifeCounter();
   const player2 = useLifeCounter();
-  const { minutes, seconds, start, stop, isRunning, reset } = useRoundTimer();
+  const timer = useRoundTimer();
   const [showHistory, setShowHistory] = useState<boolean>(false);
   const [showResetConfirmation, setShowResetConfirmation] =
     useState<boolean>(false);
 
   const toggleTimer = () => {
-    if (isRunning) {
-      stop();
+    if (timer.isRunning) {
+      timer.pause();
     } else {
-      start();
+      timer.start();
     }
   };
 
   const handleReset = () => {
     player1.handleReset();
     player2.handleReset();
-    reset();
+    timer.stop();
     setShowResetConfirmation(false);
   };
 
@@ -50,23 +51,14 @@ function App() {
           currentLifeChange={player1.currentLifeChange}
         />
         <div className="flex my-6">
-          <button
-            type="button"
-            onClick={() => setShowResetConfirmation(true)}
-            aria-label="Reset game"
-            className={iconButton}
-          >
-            <FaArrowRotateRight />
-          </button>
-          <div className="ml-auto flex gap-2 items-center">
-            <Clock minutes={minutes} seconds={seconds} />
+          <div className="flex gap-2 items-center">
             <button
               type="button"
-              onClick={toggleTimer}
+              onClick={() => setShowResetConfirmation(true)}
+              aria-label="Reset game"
               className={iconButton}
-              aria-label={isRunning ? "Pause timer" : "Start timer"}
             >
-              {isRunning ? <FaPause /> : <FaPlay />}
+              <FaArrowRotateRight />
             </button>
             <button
               type="button"
@@ -75,6 +67,25 @@ function App() {
               onClick={() => setShowHistory(true)}
             >
               <FaTimeline />
+            </button>
+          </div>
+          <div className="ml-auto flex gap-2 items-center">
+            <Clock minutes={timer.minutes} seconds={timer.seconds} />
+            <button
+              type="button"
+              onClick={toggleTimer}
+              className={iconButton}
+              aria-label={timer.isRunning ? "Pause timer" : "Start timer"}
+            >
+              {timer.isRunning ? <FaPause /> : <FaPlay />}
+            </button>
+            <button
+              type="button"
+              onClick={timer.stop}
+              className={iconButton}
+              aria-label="Stop timer"
+            >
+              <FaStop />
             </button>
           </div>
         </div>
