@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
-
-export const STARTING_LIFE_TOTAL = 20;
+import { STARTING_LIFE_TOTAL } from "./STARTING_LIFE_TOTAL";
 
 export function useLifeCounter(name: string) {
   const [life, setLife] = useLocalStorage<number>(

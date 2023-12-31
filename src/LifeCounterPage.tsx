@@ -13,12 +13,10 @@ import { LifeHistory } from "./components/LifeHistory.tsx";
 import { Dialog } from "./components/Dialog.tsx";
 import { useState } from "react";
 
-export const STARTING_LIFE_TOTAL = 20;
-
 const ICON_SIZE = 36;
 const iconButton = "border-2 border-sky-800 p-2 rounded-md";
 
-function App() {
+function LifeCounterPage() {
   const player1 = useLifeCounter("player1");
   const player2 = useLifeCounter("player2");
   const timer = useRoundTimer();
@@ -139,4 +137,4 @@ function App() {
   );
 }
 
-export default App;
+export { LifeCounterPage };

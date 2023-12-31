@@ -1,4 +1,4 @@
-import { STARTING_LIFE_TOTAL } from "../App";
+import { STARTING_LIFE_TOTAL } from "../STARTING_LIFE_TOTAL";
 
 type LifeHistoryProps = {
   lifeHistory: number[];
