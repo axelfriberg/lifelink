@@ -4,7 +4,7 @@ import { LifeCounterPage } from "./LifeCounterPage";
 
 const rootRoute = new RootRoute({
   component: () => (
-    <>
+    <div className="bg-plains h-dvh">
       <div className="p-2 flex gap-2">
         <Link to="/" className="[&.active]:font-bold">
           Home
@@ -16,7 +16,7 @@ const rootRoute = new RootRoute({
       <hr />
       <Outlet />
       <TanStackRouterDevtools />
-    </>
+    </div>
   ),
 });
 
