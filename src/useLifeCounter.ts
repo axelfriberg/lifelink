@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
-import { STARTING_LIFE_TOTAL } from "./STARTING_LIFE_TOTAL";
+import { useStartingLifeTotal } from "./useStartingLifeTotal";
 
 export function useLifeCounter(name: string) {
+  const [startingLifeTotal] = useStartingLifeTotal();
   const [life, setLife] = useLocalStorage<number>(
     `${name}-life`,
-    STARTING_LIFE_TOTAL,
+    startingLifeTotal,
   );
   const [lifeHistory, setLifeHistory] = useLocalStorage<number[]>(
     `${name}-life-history`,
@@ -36,7 +37,7 @@ export function useLifeCounter(name: string) {
   };
 
   const handleReset = () => {
-    setLife(STARTING_LIFE_TOTAL);
+    setLife(startingLifeTotal);
     setLifeHistory([]);
   };
 

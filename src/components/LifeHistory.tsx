@@ -1,13 +1,14 @@
-import { STARTING_LIFE_TOTAL } from "../STARTING_LIFE_TOTAL";
+import { useStartingLifeTotal } from "../useStartingLifeTotal";
 
 type LifeHistoryProps = {
   lifeHistory: number[];
 };
 
 export function LifeHistory({ lifeHistory }: LifeHistoryProps) {
+  const [startingLifeTotal] = useStartingLifeTotal();
   function calculateChanges() {
-    const result = [STARTING_LIFE_TOTAL];
-    let currentNumber = STARTING_LIFE_TOTAL;
+    const result = [startingLifeTotal];
+    let currentNumber = startingLifeTotal;
 
     for (let i = 0; i < lifeHistory.length; i++) {
       currentNumber += lifeHistory[i];
@@ -25,7 +26,7 @@ export function LifeHistory({ lifeHistory }: LifeHistoryProps) {
         return (
           <li key={index}>
             {index === 0
-              ? STARTING_LIFE_TOTAL
+              ? startingLifeTotal
               : `${array[index - 1]}${isPositive ? "+" : ""}${
                   lifeHistory[index - 1]
                 } = ${value}`}

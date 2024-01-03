@@ -1,6 +1,7 @@
 import { Outlet, Router, Route, RootRoute } from "@tanstack/react-router";
 import { LifeCounterPage } from "./LifeCounterPage";
 import { HomePage } from "./HomePage";
+import { SettingsPage } from "./SettingsPage";
 import { TanStackRouterDevtools } from "../components/TanStackRouterDevtools";
 import { Suspense } from "react";
 
@@ -27,7 +28,17 @@ const lifeCounterRoute = new Route({
   component: LifeCounterPage,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, lifeCounterRoute]);
+const settingsRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: "/settings",
+  component: SettingsPage,
+});
+
+const routeTree = rootRoute.addChildren([
+  indexRoute,
+  lifeCounterRoute,
+  settingsRoute,
+]);
 
 const router = new Router({ routeTree });
 

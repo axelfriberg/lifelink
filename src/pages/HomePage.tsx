@@ -12,6 +12,9 @@ export function HomePage() {
         <Link asButton to="/life-counter">
           Start Game
         </Link>
+        <Link asButton to="/settings">
+          Settings
+        </Link>
       </div>
       <a
         href="https://github.com/axelfriberg/lifelink"
