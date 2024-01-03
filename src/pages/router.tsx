@@ -1,7 +1,7 @@
 import { Outlet, Router, Route, RootRoute } from "@tanstack/react-router";
 import { LifeCounterPage } from "./LifeCounterPage";
 import { HomePage } from "./HomePage";
-import { TanStackRouterDevtools } from "./components/TanStackRouterDevtools";
+import { TanStackRouterDevtools } from "../components/TanStackRouterDevtools";
 import { Suspense } from "react";
 
 const rootRoute = new RootRoute({

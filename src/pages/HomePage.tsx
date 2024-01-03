@@ -1,5 +1,5 @@
-import lifeLinkLogo from "./assets/lifelink_logo.svg";
-import { Link } from "./components/Link";
+import lifeLinkLogo from "../assets/lifelink_logo.svg";
+import { Link } from "../components/Link";
 import { FaGithub } from "react-icons/fa";
 
 export function HomePage() {

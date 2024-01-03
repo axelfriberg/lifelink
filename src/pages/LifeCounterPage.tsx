@@ -1,7 +1,7 @@
-import { Clock } from "./components/Clock.tsx";
-import { LifeCounter } from "./components/LifeCounter.tsx";
-import useRoundTimer from "./useRoundTimer.ts";
-import { useLifeCounter } from "./useLifeCounter.ts";
+import { Clock } from "../components/Clock.tsx";
+import { LifeCounter } from "../components/LifeCounter.tsx";
+import useRoundTimer from "../useRoundTimer.ts";
+import { useLifeCounter } from "../useLifeCounter.ts";
 import {
   FaArrowRotateRight,
   FaPlay,
@@ -9,8 +9,8 @@ import {
   FaTimeline,
   FaStop,
 } from "react-icons/fa6";
-import { LifeHistory } from "./components/LifeHistory.tsx";
-import { Dialog } from "./components/Dialog.tsx";
+import { LifeHistory } from "../components/LifeHistory.tsx";
+import { Dialog } from "../components/Dialog.tsx";
 import { useState } from "react";
 
 const ICON_SIZE = 36;
