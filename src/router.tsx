@@ -1,13 +1,16 @@
 import { Outlet, Router, Route, RootRoute } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { LifeCounterPage } from "./LifeCounterPage";
 import { HomePage } from "./HomePage";
+import { TanStackRouterDevtools } from "./components/TanStackRouterDevtools";
+import { Suspense } from "react";
 
 const rootRoute = new RootRoute({
   component: () => (
     <div className="bg-plains h-dvh">
       <Outlet />
-      <TanStackRouterDevtools />
+      <Suspense fallback={null}>
+        <TanStackRouterDevtools />
+      </Suspense>
     </div>
   ),
 });
