@@ -1,19 +1,11 @@
-import { Outlet, Link, Router, Route, RootRoute } from "@tanstack/react-router";
+import { Outlet, Router, Route, RootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { LifeCounterPage } from "./LifeCounterPage";
+import { HomePage } from "./HomePage";
 
 const rootRoute = new RootRoute({
   component: () => (
     <div className="bg-plains h-dvh">
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{" "}
-        <Link to="/life-counter" className="[&.active]:font-bold">
-          Life Counter
-        </Link>
-      </div>
-      <hr />
       <Outlet />
       <TanStackRouterDevtools />
     </div>
@@ -23,13 +15,7 @@ const rootRoute = new RootRoute({
 const indexRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/",
-  component: function Index() {
-    return (
-      <div className="p-2">
-        <h3>Welcome Home!</h3>
-      </div>
-    );
-  },
+  component: HomePage,
 });
 
 const lifeCounterRoute = new Route({
