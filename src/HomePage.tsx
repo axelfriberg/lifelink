@@ -1,5 +1,6 @@
 import lifeLinkLogo from "./assets/lifelink_logo.svg";
 import { Link } from "./components/Link";
+import { FaGithub } from "react-icons/fa";
 
 export function HomePage() {
   return (
@@ -12,6 +13,13 @@ export function HomePage() {
           Start Game
         </Link>
       </div>
+      <a
+        href="https://github.com/axelfriberg/lifelink"
+        aria-label="Github page"
+        className="absolute bottom-0 right-0 p-2"
+      >
+        <FaGithub size={36} />
+      </a>
     </div>
   );
 }
