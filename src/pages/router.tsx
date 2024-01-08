@@ -1,5 +1,5 @@
 import { Outlet, Router, Route, RootRoute } from "@tanstack/react-router";
-import { LifeCounterPage } from "./LifeCounterPage";
+import { LifeCounterPage } from "./LifeCounter";
 import { HomePage } from "./HomePage";
 import { SettingsPage } from "./SettingsPage";
 import { TanStackRouterDevtools } from "../components/TanStackRouterDevtools";
