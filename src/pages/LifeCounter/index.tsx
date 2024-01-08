@@ -1,7 +1,7 @@
 import { Clock } from "../../components/Clock.tsx";
 import { LifeCounter } from "../../components/LifeCounter.tsx";
 import useRoundTimer from "../../useRoundTimer.ts";
-import { useLifeCounter } from "../../useLifeCounter.ts";
+import { useLifeCounter } from "./context/useLifeCounter.ts";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa6";
 import { IconButton } from "@radix-ui/themes";
 import { ResetGameDialog } from "./ResetGameDialog.tsx";
@@ -10,8 +10,7 @@ import { LifeHistoryDialog } from "./LifeHistoryDialog.tsx";
 const ICON_SIZE = 24;
 
 export function LifeCounterPage() {
-  const player1 = useLifeCounter("player1");
-  const player2 = useLifeCounter("player2");
+  const { player1, player2 } = useLifeCounter();
   const timer = useRoundTimer();
 
   const toggleTimer = () => {
@@ -23,8 +22,8 @@ export function LifeCounterPage() {
   };
 
   const handleReset = () => {
-    player1.handleReset();
-    player2.handleReset();
+    player1.setLife(20);
+    player2.setLife(20);
     timer.stop();
   };
 
@@ -35,16 +34,16 @@ export function LifeCounterPage() {
           <LifeCounter
             className="rotate-180 my-auto"
             life={player1.life}
-            onLifeIncrease={player1.handleLifeIncrease}
-            onLifeDecrease={player1.handleLifeDecrease}
-            currentLifeChange={player1.currentLifeChange}
+            onLifeIncrease={player1.increaseLife}
+            onLifeDecrease={player1.decreaseLife}
+            currentLifeChange={0} // TODO: Implement
           />
           <div className="flex">
             <div className="flex gap-2 items-center">
               <ResetGameDialog handleReset={handleReset} />
               <LifeHistoryDialog
-                player1LifeHistory={player1.lifeHistory}
-                player2LifeHistory={player2.lifeHistory}
+                player1LifeHistory={[]} // TODO: Implement
+                player2LifeHistory={[]} // TODO: Implement
               />
             </div>
             <Clock
@@ -67,9 +66,9 @@ export function LifeCounterPage() {
           </div>
           <LifeCounter
             life={player2.life}
-            onLifeIncrease={player2.handleLifeIncrease}
-            onLifeDecrease={player2.handleLifeDecrease}
-            currentLifeChange={player2.currentLifeChange}
+            onLifeIncrease={player2.increaseLife}
+            onLifeDecrease={player2.decreaseLife}
+            currentLifeChange={0} // TODO: Implement
             className="my-auto"
           />
         </div>
