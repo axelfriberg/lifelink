@@ -11,6 +11,7 @@
     "prettier": "prettier . --write"
   },
   "dependencies": {
+    "@radix-ui/themes": "^2.0.3",
     "@tanstack/react-router": "^1.0.6",
     "@tanstack/router-devtools": "^1.0.6",
     "@vercel/analytics": "^1.1.1",

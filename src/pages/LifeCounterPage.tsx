@@ -11,18 +11,14 @@ import {
 } from "react-icons/fa6";
 import { LifeHistory } from "../components/LifeHistory.tsx";
 import { Dialog } from "../components/Dialog.tsx";
-import { useState } from "react";
+import { Button, IconButton } from "@radix-ui/themes";
 
-const ICON_SIZE = 36;
-const iconButton = "border-2 border-sky-800 p-2 rounded-md";
+const ICON_SIZE = 24;
 
 function LifeCounterPage() {
   const player1 = useLifeCounter("player1");
   const player2 = useLifeCounter("player2");
   const timer = useRoundTimer();
-  const [showHistory, setShowHistory] = useState<boolean>(false);
-  const [showResetConfirmation, setShowResetConfirmation] =
-    useState<boolean>(false);
 
   const toggleTimer = () => {
     if (timer.isRunning) {
@@ -36,7 +32,6 @@ function LifeCounterPage() {
     player1.handleReset();
     player2.handleReset();
     timer.stop();
-    setShowResetConfirmation(false);
   };
 
   return (
@@ -52,20 +47,46 @@ function LifeCounterPage() {
           />
           <div className="flex">
             <div className="flex gap-2 items-center">
-              <button
-                type="button"
-                onClick={() => setShowResetConfirmation(true)}
-                className={iconButton}
+              <Dialog
+                trigger={
+                  <IconButton size="4">
+                    <FaArrowRotateRight title="Reset game" size={ICON_SIZE} />
+                  </IconButton>
+                }
+                title="Reset game"
+                description="Are you sure you want reset the game? All life history will be reset
+        and the timer will be stopped."
+                confirmButton={
+                  <Button onClick={handleReset} color="red">
+                    Reset game
+                  </Button>
+                }
+                closeButton={
+                  <Button variant="soft" color="gray">
+                    Cancel
+                  </Button>
+                }
+              />
+              <Dialog
+                trigger={
+                  <IconButton size="4">
+                    <FaTimeline size={ICON_SIZE} title="View history" />
+                  </IconButton>
+                }
+                title="Life history"
+                closeButton={<Button>Close</Button>}
               >
-                <FaArrowRotateRight size={ICON_SIZE} title="Reset game" />
-              </button>
-              <button
-                type="button"
-                className={iconButton}
-                onClick={() => setShowHistory(true)}
-              >
-                <FaTimeline size={ICON_SIZE} title="View history" />
-              </button>
+                <div className="flex justify-between">
+                  <div>
+                    <p className="font-semibold">Player 1</p>
+                    <LifeHistory lifeHistory={player1.lifeHistory} />
+                  </div>
+                  <div>
+                    <p className="font-semibold">Player 2</p>
+                    <LifeHistory lifeHistory={player2.lifeHistory} />
+                  </div>
+                </div>
+              </Dialog>
             </div>
             <Clock
               minutes={timer.minutes}
@@ -73,20 +94,16 @@ function LifeCounterPage() {
               className="m-auto items-center justify-center text-center"
             />
             <div className="flex gap-2 items-center">
-              <button
-                type="button"
-                onClick={toggleTimer}
-                className={iconButton}
-              >
+              <IconButton size="4" onClick={toggleTimer}>
                 {timer.isRunning ? (
                   <FaPause size={ICON_SIZE} title="Pause timer" />
                 ) : (
                   <FaPlay size={ICON_SIZE} title="Start timer" />
                 )}
-              </button>
-              <button type="button" onClick={timer.stop} className={iconButton}>
+              </IconButton>
+              <IconButton onClick={timer.stop} size="4">
                 <FaStop size={ICON_SIZE} title="Stop timer" />
-              </button>
+              </IconButton>
             </div>
           </div>
           <LifeCounter
@@ -97,47 +114,6 @@ function LifeCounterPage() {
             className="my-auto"
           />
         </div>
-        <Dialog
-          isOpen={showHistory}
-          title="History"
-          onClose={() => setShowHistory(false)}
-        >
-          <div className="flex justify-between">
-            <div>
-              <p className="font-semibold">Player 1</p>
-              <LifeHistory lifeHistory={player1.lifeHistory} />
-            </div>
-            <div>
-              <p className="font-semibold">Player 2</p>
-              <LifeHistory lifeHistory={player2.lifeHistory} />
-            </div>
-          </div>
-        </Dialog>
-        <Dialog
-          isOpen={showResetConfirmation}
-          title="Reset game"
-          onClose={() => setShowResetConfirmation(false)}
-          description="Are you sure you want reset the game? All life history will be reset
-        and the timer will be stopped."
-          actionButtons={
-            <>
-              <button
-                type="button"
-                className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                onClick={handleReset}
-              >
-                Reset game
-              </button>
-              <button
-                type="button"
-                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                onClick={() => setShowResetConfirmation(false)}
-              >
-                Cancel
-              </button>
-            </>
-          }
-        />
       </div>
     </div>
   );
