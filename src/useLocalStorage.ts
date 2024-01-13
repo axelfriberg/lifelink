@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 
-export function useLocalStorage<T>(key: string, initialValue: unknown) {
+type LocalStorageKey = "setting_starting_life_total";
+
+export function useLocalStorage<T>(
+  key: LocalStorageKey,
+  initialValue: unknown,
+) {
   const [value, setValue] = useState<T>(() => {
     const storedValue = localStorage.getItem(key);
     return storedValue ? JSON.parse(storedValue) : initialValue;

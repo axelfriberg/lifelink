@@ -1,10 +1,15 @@
 import React, { createContext, useState } from "react";
+import {
+  DEFAULT_STARTING_LIFE_TOTAL,
+  useStartingLifeTotal,
+} from "../../../useStartingLifeTotal";
 
 type PlayerLife = {
   life: number;
   setLife: (life: number) => void;
   increaseLife: () => void;
   decreaseLife: () => void;
+  resetLife: () => void;
 };
 
 export type LifeCounterContextType = {
@@ -14,16 +19,18 @@ export type LifeCounterContextType = {
 
 export const LifeCounterContext = createContext<LifeCounterContextType>({
   player1: {
-    life: 20,
+    life: DEFAULT_STARTING_LIFE_TOTAL,
     setLife: () => {},
     increaseLife: () => {},
     decreaseLife: () => {},
+    resetLife: () => {},
   },
   player2: {
-    life: 20,
+    life: DEFAULT_STARTING_LIFE_TOTAL,
     setLife: () => {},
     increaseLife: () => {},
     decreaseLife: () => {},
+    resetLife: () => {},
   },
 });
 
@@ -32,8 +39,9 @@ export function LifeCounterProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [player1Life, setPlayer1Life] = useState(20);
-  const [player2Life, setPlayer2Life] = useState(20);
+  const [startingLifeTotal] = useStartingLifeTotal();
+  const [player1Life, setPlayer1Life] = useState(startingLifeTotal);
+  const [player2Life, setPlayer2Life] = useState(startingLifeTotal);
 
   const handleSetPlayer1Life = (life: number) => {
     setPlayer1Life(life);
@@ -59,6 +67,14 @@ export function LifeCounterProvider({
     setPlayer2Life(player2Life - 1);
   };
 
+  const handleResetPlayer1Life = () => {
+    setPlayer1Life(startingLifeTotal);
+  };
+
+  const handleResetPlayer2Life = () => {
+    setPlayer2Life(startingLifeTotal);
+  };
+
   return (
     <LifeCounterContext.Provider
       value={{
@@ -67,12 +83,14 @@ export function LifeCounterProvider({
           setLife: handleSetPlayer1Life,
           increaseLife: handleIncreasePlayer1Life,
           decreaseLife: handleDecreasePlayer1Life,
+          resetLife: handleResetPlayer1Life,
         },
         player2: {
           life: player2Life,
           setLife: handleSetPlayer2Life,
           increaseLife: handleIncreasePlayer2Life,
           decreaseLife: handleDecreasePlayer2Life,
+          resetLife: handleResetPlayer2Life,
         },
       }}
     >

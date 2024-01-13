@@ -22,8 +22,8 @@ export function LifeCounterPage() {
   };
 
   const handleReset = () => {
-    player1.setLife(20);
-    player2.setLife(20);
+    player1.resetLife();
+    player2.resetLife();
     timer.stop();
   };
 
