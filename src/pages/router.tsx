@@ -8,9 +8,13 @@ import { LifeCounterProvider } from "./LifeCounter/context/LifeCounterContext";
 
 const rootRoute = new RootRoute({
   component: () => (
-    <div className="bg-plains h-dvh">
+    <div className="bg-plains">
       <LifeCounterProvider>
-        <Outlet />
+        <div className="flex h-dvh">
+          <div className="max-w-xl mx-auto w-full px-4">
+            <Outlet />
+          </div>
+        </div>
       </LifeCounterProvider>
       <Suspense fallback={null}>
         <TanStackRouterDevtools />
