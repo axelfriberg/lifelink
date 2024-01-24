@@ -35,14 +35,14 @@ export function LifeCounterPage() {
             life={player1.life}
             onLifeIncrease={player1.increaseLife}
             onLifeDecrease={player1.decreaseLife}
-            currentLifeChange={0} // TODO: Implement
+            currentLifeChange={player1.currentLifeChange}
           />
           <div className="flex">
             <div className="flex gap-2 items-center">
               <MenuDialog stopTimer={stopTimer}/>
               <LifeHistoryDialog
-                player1LifeHistory={[]} // TODO: Implement
-                player2LifeHistory={[]} // TODO: Implement
+                player1LifeHistory={player1.lifeHistory}
+                player2LifeHistory={player2.lifeHistory}
               />
             </div>
             <Clock
@@ -67,7 +67,7 @@ export function LifeCounterPage() {
             life={player2.life}
             onLifeIncrease={player2.increaseLife}
             onLifeDecrease={player2.decreaseLife}
-            currentLifeChange={0} // TODO: Implement
+            currentLifeChange={player2.currentLifeChange}
             className="my-auto"
           />
         </div>
