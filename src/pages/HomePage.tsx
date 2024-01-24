@@ -10,7 +10,7 @@ export function HomePage() {
         <h1 className="text-5xl font-bold">Lifelink</h1>
         <p>Magic: The Gathering life counter </p>
         <Link asButton to="/life-counter">
-          Start Game
+          Start Match
         </Link>
         <Link asButton to="/settings">
           Settings

@@ -4,11 +4,14 @@ import { HomePage } from "./HomePage";
 import { SettingsPage } from "./SettingsPage";
 import { TanStackRouterDevtools } from "../components/TanStackRouterDevtools";
 import { Suspense } from "react";
+import { LifeCounterProvider } from "./LifeCounter/context/LifeCounterContext";
 
 const rootRoute = new RootRoute({
   component: () => (
     <div className="bg-plains h-dvh">
-      <Outlet />
+      <LifeCounterProvider>
+        <Outlet />
+      </LifeCounterProvider>
       <Suspense fallback={null}>
         <TanStackRouterDevtools />
       </Suspense>
