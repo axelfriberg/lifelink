@@ -7,6 +7,8 @@ type DialogProps = {
   children?: React.ReactNode;
   confirmButton?: React.ReactNode;
   closeButton?: React.ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 };
 
 export function Dialog({
@@ -16,9 +18,11 @@ export function Dialog({
   children,
   confirmButton,
   closeButton,
+  open,
+  onOpenChange,
 }: DialogProps) {
   return (
-    <RadixDialog.Root>
+    <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
       <RadixDialog.Trigger>{trigger}</RadixDialog.Trigger>
       <RadixDialog.Content style={{ maxWidth: 450 }}>
         <RadixDialog.Title>{title}</RadixDialog.Title>

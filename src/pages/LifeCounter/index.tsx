@@ -4,10 +4,11 @@ import useRoundTimer from "../../useRoundTimer.ts";
 import { useLifeCounter } from "./context/useLifeCounter.ts";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa6";
 import { IconButton } from "@radix-ui/themes";
-import { ResetGameDialog } from "./ResetGameDialog.tsx";
 import { LifeHistoryDialog } from "./LifeHistoryDialog.tsx";
+import { MenuDialog } from "./MenuDialog.tsx";
 
 const ICON_SIZE = 24;
+const BUTTON_SIZE = "4";
 
 export function LifeCounterPage() {
   const { player1, player2 } = useLifeCounter();
@@ -21,11 +22,9 @@ export function LifeCounterPage() {
     }
   };
 
-  const handleReset = () => {
-    player1.resetLife();
-    player2.resetLife();
-    timer.stop();
-  };
+  const stopTimer = () => {
+    timer.stop()
+  }
 
   return (
     <div className="flex flex-col h-full">
@@ -40,7 +39,7 @@ export function LifeCounterPage() {
           />
           <div className="flex">
             <div className="flex gap-2 items-center">
-              <ResetGameDialog handleReset={handleReset} />
+              <MenuDialog stopTimer={stopTimer}/>
               <LifeHistoryDialog
                 player1LifeHistory={[]} // TODO: Implement
                 player2LifeHistory={[]} // TODO: Implement
@@ -52,14 +51,14 @@ export function LifeCounterPage() {
               className="m-auto items-center justify-center text-center"
             />
             <div className="flex gap-2 items-center">
-              <IconButton size="4" onClick={toggleTimer}>
+              <IconButton size={BUTTON_SIZE} onClick={toggleTimer}>
                 {timer.isRunning ? (
                   <FaPause size={ICON_SIZE} title="Pause timer" />
                 ) : (
                   <FaPlay size={ICON_SIZE} title="Start timer" />
                 )}
               </IconButton>
-              <IconButton onClick={timer.stop} size="4">
+              <IconButton onClick={timer.stop} size={BUTTON_SIZE}>
                 <FaStop size={ICON_SIZE} title="Stop timer" />
               </IconButton>
             </div>
