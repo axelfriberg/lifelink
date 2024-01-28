@@ -1,11 +1,11 @@
-import { useStartingLifeTotal } from "../useStartingLifeTotal";
+import { useSettings } from "../hooks/useSettings.ts";
 
 type LifeHistoryProps = {
   lifeHistory: number[];
 };
 
 export function LifeHistory({ lifeHistory }: LifeHistoryProps) {
-  const [startingLifeTotal] = useStartingLifeTotal();
+  const [{ startingLifeTotal }] = useSettings();
   function calculateChanges() {
     const result = [startingLifeTotal];
     let currentNumber = startingLifeTotal;

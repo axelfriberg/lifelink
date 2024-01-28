@@ -1,14 +1,15 @@
 import { Link } from "../components/Link";
 import { FaArrowLeft } from "react-icons/fa";
-import { useStartingLifeTotal } from "../useStartingLifeTotal";
+import { useSettings } from "../hooks/useSettings.ts";
+import { type ChangeEvent } from "react";
 
 export function SettingsPage() {
-  const [startingLifeTotal, setStartingLifeTotal] = useStartingLifeTotal();
+  const [{ startingLifeTotal }, setSettings] = useSettings();
 
   const handleStartingLifeTotalChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: ChangeEvent<HTMLSelectElement>,
   ) => {
-    setStartingLifeTotal(Number(event.target.value));
+    setSettings({ startingLifeTotal: Number(event.target.value) });
   };
 
   return (

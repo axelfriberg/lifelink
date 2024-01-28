@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
+  useSettings,
   DEFAULT_STARTING_LIFE_TOTAL,
-  useStartingLifeTotal,
-} from "../../../useStartingLifeTotal";
+} from "../../../hooks/useSettings.ts";
 import { useDebounce } from "usehooks-ts";
 
 type PlayerLife = {
@@ -43,7 +43,7 @@ export function LifeCounterProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [startingLifeTotal] = useStartingLifeTotal();
+  const [{ startingLifeTotal }] = useSettings();
   const [player1Life, setPlayer1Life] = useState(startingLifeTotal);
   const [player2Life, setPlayer2Life] = useState(startingLifeTotal);
   const [currentLifeChangePlayer1, setCurrentLifeChangePlayer1] =

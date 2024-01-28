@@ -9,13 +9,11 @@ import { LifeCounterProvider } from "./LifeCounter/context/LifeCounterContext";
 const rootRoute = new RootRoute({
   component: () => (
     <div className="bg-plains">
-      <LifeCounterProvider>
-        <div className="flex h-dvh">
-          <div className="max-w-xl mx-auto w-full px-4">
-            <Outlet />
-          </div>
+      <div className="flex h-dvh">
+        <div className="max-w-xl mx-auto w-full px-4">
+          <Outlet />
         </div>
-      </LifeCounterProvider>
+      </div>
       <Suspense fallback={null}>
         <TanStackRouterDevtools />
       </Suspense>
@@ -32,7 +30,11 @@ const indexRoute = new Route({
 const lifeCounterRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/life-counter",
-  component: LifeCounterPage,
+  component: () => (
+    <LifeCounterProvider>
+      <LifeCounterPage />
+    </LifeCounterProvider>
+  ),
 });
 
 const settingsRoute = new Route({
