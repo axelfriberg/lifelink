@@ -1,18 +1,18 @@
 import { Clock } from "../../components/Clock.tsx";
 import { LifeCounter } from "../../components/LifeCounter.tsx";
-import useRoundTimer from "../../useRoundTimer.ts";
 import { useLifeCounter } from "./context/useLifeCounter.ts";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa6";
 import { IconButton } from "@radix-ui/themes";
 import { LifeHistoryDialog } from "./LifeHistoryDialog.tsx";
 import { MenuDialog } from "./MenuDialog.tsx";
+import { useMatchTimer } from "@/pages/LifeCounter/useMatchTimer.ts";
 
 const ICON_SIZE = 24;
 const BUTTON_SIZE = "4";
 
 export function LifeCounterPage() {
   const { player1, player2 } = useLifeCounter();
-  const timer = useRoundTimer();
+  const timer = useMatchTimer();
 
   const toggleTimer = () => {
     if (timer.isRunning) {

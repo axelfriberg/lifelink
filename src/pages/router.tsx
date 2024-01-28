@@ -1,8 +1,8 @@
 import { Outlet, Router, Route, RootRoute } from "@tanstack/react-router";
 import { LifeCounterPage } from "./LifeCounter";
 import { HomePage } from "./HomePage";
-import { SettingsPage } from "./SettingsPage";
-import { TanStackRouterDevtools } from "../components/TanStackRouterDevtools";
+import { SettingsPage } from "@/pages/Settings/SettingsPage";
+import { TanStackRouterDevtools } from "@/components/TanStackRouterDevtools";
 import { Suspense } from "react";
 import { LifeCounterProvider } from "./LifeCounter/context/LifeCounterContext";
 
