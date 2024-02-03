@@ -1,10 +1,10 @@
 import { Outlet, Router, Route, RootRoute } from "@tanstack/react-router";
-import { LifeCounterPage } from "./LifeCounter";
+import { MatchPage } from "./Match";
 import { HomePage } from "./HomePage";
 import { SettingsPage } from "@/pages/Settings/SettingsPage";
 import { TanStackRouterDevtools } from "@/components/TanStackRouterDevtools";
 import { Suspense } from "react";
-import { LifeCounterProvider } from "./LifeCounter/context/LifeCounterContext";
+import { LifeCounterProvider } from "@/pages/Match/context/LifeCounterContext";
 
 const rootRoute = new RootRoute({
   component: () => (
@@ -27,12 +27,12 @@ const indexRoute = new Route({
   component: HomePage,
 });
 
-const lifeCounterRoute = new Route({
+const matchRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: "/life-counter",
+  path: "/match",
   component: () => (
     <LifeCounterProvider>
-      <LifeCounterPage />
+      <MatchPage />
     </LifeCounterProvider>
   ),
 });
@@ -45,7 +45,7 @@ const settingsRoute = new Route({
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
-  lifeCounterRoute,
+  matchRoute,
   settingsRoute,
 ]);
 

@@ -4,12 +4,12 @@ import { FaPlay, FaPause, FaStop } from "react-icons/fa6";
 import { IconButton } from "@radix-ui/themes";
 import { LifeHistoryDialog } from "./LifeHistoryDialog.tsx";
 import { MenuDialog } from "./MenuDialog.tsx";
-import { useMatchTimer } from "@/pages/LifeCounter/useMatchTimer.ts";
+import { useMatchTimer } from "@/pages/Match/useMatchTimer.ts";
 
 const ICON_SIZE = 24;
 const BUTTON_SIZE = "4";
 
-export function LifeCounterPage() {
+export function MatchPage() {
   const { player1, player2 } = useLifeCounter();
   const timer = useMatchTimer();
 

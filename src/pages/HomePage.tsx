@@ -9,7 +9,7 @@ export function HomePage() {
         <img src={lifeLinkLogo} alt="Lifelink logo" width={100} height={100} />
         <h1 className="text-5xl font-bold">Lifelink</h1>
         <p>Magic: The Gathering life counter </p>
-        <Link asButton to="/life-counter">
+        <Link asButton to="/match">
           Start Match
         </Link>
         <Link asButton to="/settings">
