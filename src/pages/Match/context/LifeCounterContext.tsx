@@ -1,6 +1,7 @@
-import React, { createContext, useState } from "react";
+import React, { createContext } from "react";
 import { DEFAULT_STARTING_LIFE_TOTAL } from "../../../hooks/useSettings.ts";
 import { usePlayerLife } from "./usePlayerLife.ts";
+import { useGameWins } from "./useGameWins.ts";
 
 type PlayerState = {
   life: number;
@@ -49,52 +50,35 @@ export function LifeCounterProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const player1 = usePlayerLife();
-  const player2 = usePlayerLife();
-
-  const [player1GameWin, setPlayer1GameWin] = useState<number>(0);
-  const [player2GameWin, setPlayer2GameWin] = useState<number>(0);
-
-  const handlePlayer1GameWin = () => {
-    setPlayer1GameWin((prev) => prev + 1);
-  };
-
-  const handlePlayer2GameWin = () => {
-    setPlayer2GameWin((prev) => prev + 1);
-  };
-
-  const handlePlayer1GameWinReset = () => {
-    setPlayer1GameWin(0);
-  };
-
-  const handlePlayer2GameWinReset = () => {
-    setPlayer2GameWin(0);
-  };
+  const player1Life = usePlayerLife();
+  const player2Life = usePlayerLife();
+  const player1GameWins = useGameWins();
+  const player2GameWins = useGameWins();
 
   return (
     <LifeCounterContext.Provider
       value={{
         player1: {
-          life: player1.life,
-          increaseLife: player1.increaseLife,
-          decreaseLife: player1.decreaseLife,
-          resetLife: player1.reset,
-          lifeHistory: player1.lifeHistory,
-          currentLifeChange: player1.currentLifeChange,
-          gameWins: player1GameWin,
-          addGameWin: handlePlayer1GameWin,
-          resetGameWins: handlePlayer1GameWinReset,
+          life: player1Life.life,
+          increaseLife: player1Life.increaseLife,
+          decreaseLife: player1Life.decreaseLife,
+          resetLife: player1Life.reset,
+          lifeHistory: player1Life.lifeHistory,
+          currentLifeChange: player1Life.currentLifeChange,
+          gameWins: player1GameWins.gameWins,
+          addGameWin: player1GameWins.addGameWin,
+          resetGameWins: player1GameWins.reset,
         },
         player2: {
-          life: player2.life,
-          increaseLife: player2.increaseLife,
-          decreaseLife: player2.decreaseLife,
-          resetLife: player2.reset,
-          lifeHistory: player2.lifeHistory,
-          currentLifeChange: player2.currentLifeChange,
-          gameWins: player2GameWin,
-          addGameWin: handlePlayer2GameWin,
-          resetGameWins: handlePlayer2GameWinReset,
+          life: player2Life.life,
+          increaseLife: player2Life.increaseLife,
+          decreaseLife: player2Life.decreaseLife,
+          resetLife: player2Life.reset,
+          lifeHistory: player2Life.lifeHistory,
+          currentLifeChange: player2Life.currentLifeChange,
+          gameWins: player2GameWins.gameWins,
+          addGameWin: player2GameWins.addGameWin,
+          resetGameWins: player2GameWins.reset,
         },
       }}
     >
