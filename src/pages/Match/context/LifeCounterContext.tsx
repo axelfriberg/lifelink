@@ -18,6 +18,8 @@ type PlayerState = {
 export type LifeCounterContextType = {
   player1: PlayerState;
   player2: PlayerState;
+  startNewMatch: () => void;
+  startNewGame: () => void;
 };
 
 const initialState = {
@@ -35,6 +37,8 @@ const initialState = {
 export const LifeCounterContext = createContext<LifeCounterContextType>({
   player1: initialState,
   player2: initialState,
+  startNewMatch: () => {},
+  startNewGame: () => {},
 });
 
 export function LifeCounterProvider({
@@ -46,6 +50,18 @@ export function LifeCounterProvider({
   const player2Life = usePlayerLife();
   const player1GameWins = useGameWins();
   const player2GameWins = useGameWins();
+
+  const startNewGame = () => {
+    player1Life.reset();
+    player2Life.reset();
+  };
+
+  const startNewMatch = () => {
+    player1Life.reset();
+    player2Life.reset();
+    player1GameWins.reset();
+    player2GameWins.reset();
+  };
 
   return (
     <LifeCounterContext.Provider
@@ -72,6 +88,8 @@ export function LifeCounterProvider({
           addGameWin: player2GameWins.addGameWin,
           resetGameWins: player2GameWins.reset,
         },
+        startNewMatch,
+        startNewGame,
       }}
     >
       {children}

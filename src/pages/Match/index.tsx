@@ -3,7 +3,7 @@ import { useLifeCounter } from "./context/useLifeCounter.ts";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa6";
 import { IconButton } from "@radix-ui/themes";
 import { LifeHistoryDialog } from "./LifeHistoryDialog.tsx";
-import { MenuDialog } from "./MenuDialog.tsx";
+import { MenuDialog } from "./MenuDialog/MenuDialog.tsx";
 import { useMatchTimer } from "@/pages/Match/useMatchTimer.ts";
 
 const ICON_SIZE = 24;
