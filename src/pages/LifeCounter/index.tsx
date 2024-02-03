@@ -35,20 +35,17 @@ export function LifeCounterPage() {
         onLifeDecrease={player1.decreaseLife}
         currentLifeChange={player1.currentLifeChange}
       />
-      <div className="flex">
+      <div className="flex justify-between">
         <div className="flex gap-2 items-center">
           <MenuDialog stopTimer={stopTimer} />
           <LifeHistoryDialog
             player1LifeHistory={player1.lifeHistory}
             player2LifeHistory={player2.lifeHistory}
           />
+          <div className="text-xl font-bold">{`${player1.gameWins} - ${player2.gameWins}`}</div>
         </div>
-        <Clock
-          minutes={timer.minutes}
-          seconds={timer.seconds}
-          className="m-auto items-center justify-center text-center"
-        />
         <div className="flex gap-2 items-center">
+          <Clock minutes={timer.minutes} seconds={timer.seconds} />
           <IconButton size={BUTTON_SIZE} onClick={toggleTimer}>
             {timer.isRunning ? (
               <FaPause size={ICON_SIZE} title="Pause timer" />

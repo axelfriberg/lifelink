@@ -10,8 +10,11 @@ type PlayerLife = {
   increaseLife: () => void;
   decreaseLife: () => void;
   resetLife: () => void;
+  resetGameWins: () => void;
   lifeHistory: number[];
   currentLifeChange: number;
+  gameWins: number;
+  addGameWin: () => void;
 };
 
 export type LifeCounterContextType = {
@@ -25,16 +28,22 @@ export const LifeCounterContext = createContext<LifeCounterContextType>({
     increaseLife: () => {},
     decreaseLife: () => {},
     resetLife: () => {},
+    resetGameWins: () => {},
+    addGameWin: () => {},
     lifeHistory: [],
     currentLifeChange: 0,
+    gameWins: 0,
   },
   player2: {
     life: DEFAULT_STARTING_LIFE_TOTAL,
     increaseLife: () => {},
     decreaseLife: () => {},
     resetLife: () => {},
+    resetGameWins: () => {},
+    addGameWin: () => {},
     lifeHistory: [],
     currentLifeChange: 0,
+    gameWins: 0,
   },
 });
 
@@ -54,6 +63,8 @@ export function LifeCounterProvider({
   const debouncedValue2 = useDebounce<number>(currentLifeChangePlayer2, 1000);
   const [lifeHistoryPlayer1, setLifeHistoryPlayer1] = useState<number[]>([]);
   const [lifeHistoryPlayer2, setLifeHistoryPlayer2] = useState<number[]>([]);
+  const [player1GameWin, setPlayer1GameWin] = useState<number>(0);
+  const [player2GameWin, setPlayer2GameWin] = useState<number>(0);
 
   useEffect(() => {
     if (debouncedValue1 === 0) return;
@@ -97,6 +108,22 @@ export function LifeCounterProvider({
     setPlayer2Life(startingLifeTotal);
   };
 
+  const handlePlayer1GameWin = () => {
+    setPlayer1GameWin((prev) => prev + 1);
+  };
+
+  const handlePlayer2GameWin = () => {
+    setPlayer2GameWin((prev) => prev + 1);
+  };
+
+  const handlePlayer1GameWinReset = () => {
+    setPlayer1GameWin(0);
+  };
+
+  const handlePlayer2GameWinReset = () => {
+    setPlayer2GameWin(0);
+  };
+
   return (
     <LifeCounterContext.Provider
       value={{
@@ -107,6 +134,9 @@ export function LifeCounterProvider({
           resetLife: handleResetPlayer1Life,
           lifeHistory: lifeHistoryPlayer1,
           currentLifeChange: currentLifeChangePlayer1,
+          gameWins: player1GameWin,
+          addGameWin: handlePlayer1GameWin,
+          resetGameWins: handlePlayer1GameWinReset,
         },
         player2: {
           life: player2Life,
@@ -115,6 +145,9 @@ export function LifeCounterProvider({
           resetLife: handleResetPlayer2Life,
           lifeHistory: lifeHistoryPlayer2,
           currentLifeChange: currentLifeChangePlayer2,
+          gameWins: player2GameWin,
+          addGameWin: handlePlayer2GameWin,
+          resetGameWins: handlePlayer2GameWinReset,
         },
       }}
     >
