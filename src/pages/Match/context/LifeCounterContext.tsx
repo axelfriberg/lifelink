@@ -20,29 +20,21 @@ export type LifeCounterContextType = {
   player2: PlayerState;
 };
 
+const initialState = {
+  life: DEFAULT_STARTING_LIFE_TOTAL,
+  increaseLife: () => {},
+  decreaseLife: () => {},
+  resetLife: () => {},
+  resetGameWins: () => {},
+  addGameWin: () => {},
+  lifeHistory: [],
+  currentLifeChange: 0,
+  gameWins: 0,
+};
+
 export const LifeCounterContext = createContext<LifeCounterContextType>({
-  player1: {
-    life: DEFAULT_STARTING_LIFE_TOTAL,
-    increaseLife: () => {},
-    decreaseLife: () => {},
-    resetLife: () => {},
-    resetGameWins: () => {},
-    addGameWin: () => {},
-    lifeHistory: [],
-    currentLifeChange: 0,
-    gameWins: 0,
-  },
-  player2: {
-    life: DEFAULT_STARTING_LIFE_TOTAL,
-    increaseLife: () => {},
-    decreaseLife: () => {},
-    resetLife: () => {},
-    resetGameWins: () => {},
-    addGameWin: () => {},
-    lifeHistory: [],
-    currentLifeChange: 0,
-    gameWins: 0,
-  },
+  player1: initialState,
+  player2: initialState,
 });
 
 export function LifeCounterProvider({
