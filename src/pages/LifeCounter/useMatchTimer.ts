@@ -12,7 +12,7 @@ const useMatchTimer = () => {
     }
   }, 1000);
 
-  const date = new Date(time);
+  const date = new Date(Math.abs(time));
 
   const minutes = date.getUTCMinutes();
   const seconds = date.getSeconds();
@@ -23,13 +23,17 @@ const useMatchTimer = () => {
     setIsRunning(false);
   };
 
+  const timeValue = `${time < 0 ? "-" : ""}${String(minutes).padStart(
+    2,
+    "0",
+  )}:${String(seconds).padStart(2, "0")}`;
+
   return {
-    minutes,
-    seconds,
     start,
     stop,
     isRunning,
     pause,
+    time: timeValue,
   };
 };
 

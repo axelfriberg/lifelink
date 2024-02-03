@@ -1,4 +1,3 @@
-import { Clock } from "../../components/Clock.tsx";
 import { LifeCounter } from "../../components/LifeCounter.tsx";
 import { useLifeCounter } from "./context/useLifeCounter.ts";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa6";
@@ -22,10 +21,6 @@ export function LifeCounterPage() {
     }
   };
 
-  const stopTimer = () => {
-    timer.stop();
-  };
-
   return (
     <div className="my-auto flex flex-col h-full gap-8">
       <LifeCounter
@@ -37,7 +32,7 @@ export function LifeCounterPage() {
       />
       <div className="flex justify-between">
         <div className="flex gap-2 items-center">
-          <MenuDialog stopTimer={stopTimer} />
+          <MenuDialog stopTimer={timer.stop} />
           <LifeHistoryDialog
             player1LifeHistory={player1.lifeHistory}
             player2LifeHistory={player2.lifeHistory}
@@ -45,7 +40,7 @@ export function LifeCounterPage() {
           <div className="text-xl font-bold">{`${player1.gameWins} - ${player2.gameWins}`}</div>
         </div>
         <div className="flex gap-2 items-center">
-          <Clock minutes={timer.minutes} seconds={timer.seconds} />
+          <div className="text-xl font-bold">{timer.time}</div>
           <IconButton size={BUTTON_SIZE} onClick={toggleTimer}>
             {timer.isRunning ? (
               <FaPause size={ICON_SIZE} title="Pause timer" />
