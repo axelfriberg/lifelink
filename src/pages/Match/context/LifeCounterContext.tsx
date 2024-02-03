@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 import { DEFAULT_STARTING_LIFE_TOTAL } from "../../../hooks/useSettings.ts";
 import { usePlayerLife } from "./usePlayerLife.ts";
 
-type PlayerLife = {
+type PlayerState = {
   life: number;
   increaseLife: () => void;
   decreaseLife: () => void;
@@ -15,8 +15,8 @@ type PlayerLife = {
 };
 
 export type LifeCounterContextType = {
-  player1: PlayerLife;
-  player2: PlayerLife;
+  player1: PlayerState;
+  player2: PlayerState;
 };
 
 export const LifeCounterContext = createContext<LifeCounterContextType>({
