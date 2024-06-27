@@ -1,30 +1,23 @@
-# React + TypeScript + Vite
+# Lifelink, a Magic the gatering life counter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Since I still haven't found my perfect lifecounter for MTG that has all the features I want I decided to build it myself.
 
-Currently, two official plugins are available:
+Notable features:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Round timer
+- Round tracking (who has won each round within a match).
+- Life history that keeps track of life changes for each player.
+- Realtime feedback on life changes.
+- PWA so it can be installed on your homescreen.
 
-## Expanding the ESLint configuration
+Access the app here: https://lifelink-sand.vercel.app/
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Techstack
 
-- Configure the top-level `parserOptions` property like this:
+The app is created with the following tools:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- React
+- Tailwind
+- Vite
+- Tanstack Router
+- Radix
