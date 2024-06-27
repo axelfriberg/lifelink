@@ -17,6 +17,7 @@ Access the app here: https://lifelink-sand.vercel.app/
 The app is created with the following tools:
 
 - React
+- TypeScript
 - Tailwind
 - Vite
 - Tanstack Router
